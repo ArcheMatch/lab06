@@ -6,6 +6,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 option(BUILD_EXAMPLES "Build examples" OFF)
 
 project(print)
+set(PRINT_VERSION_MAJOR 0)                                                                          # Устанавливаем переменную мажорной версии
+set(PRINT_VERSION_MINOR 1)                                                                          # Устанавливаем переменную минорной версии
+set(PRINT_VERSION_PATCH 0)                                                                          # Устанавливаем переменную версии патча
+set(PRINT_VERSION_TWEAK 0)                                                                          # Устанавливаем переменную версии настроек
+set(PRINT_VERSION
+  ${PRINT_VERSION_MAJOR}.${PRINT_VERSION_MINOR}.${PRINT_VERSION_PATCH}.${PRINT_VERSION_TWEAK})  # Устанавливаем переменную, отвечающую за вывод версии пакета в формате Мажорная версия.Минорная версия.Версия патча.Версия настроек
+set(PRINT_VERSION_STRING "v${PRINT_VERSION}")                                                      # Устанавливаем переменную, отвечающую за вывод версии пакета
 
 add_library(print STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
 
@@ -34,3 +41,5 @@ install(TARGETS print
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
 install(EXPORT print-config DESTINATION cmake)
+
+include(CPackConfig.cmake)  # Включение модуля CPackConfig
